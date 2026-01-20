@@ -29,7 +29,7 @@ github_username:  AyeeshaCheng
 
 # Build settings
 # theme: minima
-删除或注释掉原来的 theme 配置（这是本地 Gem 方式，GitHub Pages 不支持）
+# 删除或注释掉原来的 theme 配置（这是本地 Gem 方式，GitHub Pages 不支持）
 # theme: jekyll-theme-so-simple
 # 新增远程主题配置（直接从 GitHub 拉取主题，无需本地安装）
 remote_theme: mmistakes/so-simple-theme
