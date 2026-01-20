@@ -31,6 +31,7 @@ github_username:  AyeeshaCheng
 # theme: minima
 # 删除或注释掉原来的 theme 配置（这是本地 Gem 方式，GitHub Pages 不支持）
 # theme: jekyll-theme-so-simple
+
 # 新增远程主题配置（直接从 GitHub 拉取主题，无需本地安装）
 remote_theme: mmistakes/so-simple-theme
 plugins:
@@ -38,6 +39,14 @@ plugins:
   - jekyll-paginate
   - jekyll-seo-tag
   - jekyll-feed
+
+# 暗色模式配置（直接加在文件末尾或「主题设置」章节）
+dark_mode: true  # 启用暗色模式功能（必须设为 true）
+dark_mode_default: dark  # 触发方式：auto/light/dark（三选一）
+# 👉 说明：
+# - auto：跟随系统设置（推荐！系统开暗色，博客就自动变深色，反之则浅色）
+# - dark：默认加载暗色模式（打开博客直接是深色）
+# - light：默认加载浅色模式，但保留切换功能（需要手动切暗色）
 
 # Exclude from processing.
 # The following items will not be processed, by default.

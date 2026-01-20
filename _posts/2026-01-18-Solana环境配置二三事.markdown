@@ -1,29 +1,102 @@
 ---
 layout: post
-title:  "Solana环境配置二三事"
+title:  "Solana环境配置|调试二三事"
 date:   2026-01-20 12:04:25 +0800
 categories: Web3 Solana 
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+跟着Solana官方教程配置，遇到一些网络环境问题、依赖问题。在环境配置上遇到很多问题，前后废了一周时间...
 
-Jekyll requires blog post files to be named according to the following format:
+### 一、VPN的全局代理
 
-`YEAR-MONTH-DAY-title.MARKUP`
+代理软件默认是应用层代理,可以在浏览器访问网页，但是无法处理命令行`ping google.com`，因为流程访问是应用层代理，命令行是网络层ICMP协议
 
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+#### 1、开启全局代理
 
-Jekyll also offers powerful support for code snippets:
+① v2rayN 启用Turn（NAT 穿透）
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
+TURN（Traversal Using Relay NAT）
+
+② Clash Verge 启用全局代理、局域网
+
+Proxies 页面，顶部模式选择 Global（全局模式）；
+setting界面，打开Tun模式、局域网
+
+#### 2、Windows启动虚拟化
+{% highlight PowerShell %}
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 {% endhighlight %}
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+#### 3、修复wsl setting 并 与宿主机共享网络配置
 
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+#管理员身份打开 PowerShell，执行以下命令强制更新 WSL 并修复安装包
+
+{% highlight PowerShell %}
+wsl --update --web-download
+wsl --shutdown
+{% endhighlight %}
+
+#打开wsl配置->选择网络->右上角网络模式选择 Mirrored
+
+
+### 二、安装教程
+
+==> 指路Solana[官方教程]
+
+#### 1、Window环境配置
+
+1） 在 Windows PowerShell 中运行如下命令，默认安装 Ubuntu
+{% highlight PowerShell %}
+wsl --install
+{% endhighlight %}
+
+2） 启动Ubuntu
+{% highlight PowerShell %}
+wsl.exe -d Ubuntu
+{% endhighlight %}
+
+其他：
+
+① 虚拟机默认安装到C盘，可迁移到D盘中;
+{% highlight PowerShell %}
+#导出虚拟机到 D:\Ubuntu\ubuntu.tar
+wsl --export Ubuntu D:\Ubuntu\ubuntu.tar
+#注销C盘虚拟机
+wsl --unregister Ubuntu
+#将虚拟机导入D盘，并将新虚拟机命名为AyeeshaUbuntu
+wsl --import  AyeeshaUbuntu D:\wsl\ubuntu  D:\Ubuntu\ubuntu.tar --version 2
+{% endhighlight %}
+
+② 虚拟机文件传输到Windows中;
+{% highlight PowerShell %}
+#传输虚拟机中文件blueshift_anchor_vault.so, 放到Windows /mnt/d/projects/rust/solana_training/
+#虚拟机mnt目录下挂载Windows的文件，因此可以直接传输
+sudo cp /home/ayeeshacheng/solana_projects/blueshift_anchor_vault/target/deploy/blueshift_anchor_vault.so /mnt/d/projects/rust/solana_training/
+{% endhighlight %}
+
+
+#### 2、 一键安装所有依赖
+{% highlight PowerShell %}
+#一键安装
+curl --proto '=https' --tlsv1.2 -sSfL https://solana-install.solana.workers.dev | bash
+#检查安装版本
+rustc --version && solana --version && anchor --version && surfpool --version && node --version && yarn --version
+{% endhighlight %}
+
+
+#### 3、 项目初始化 & 编译
+
+{% highlight PowerShell %}
+#初始
+anchor init <project-name>
+
+#编译
+cd <project-name>
+anchor build
+#编译后的程序可以在 /target/deploy 目录中找到，文件扩展符为.co
+
+#清理上次编译内容
+cargo clean
+{% endhighlight %}
+
+[官方教程]: https://solana.com/zh/docs/intro/installation
