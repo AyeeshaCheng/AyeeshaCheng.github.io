@@ -3,10 +3,10 @@
 # Build settings
 
 # 这是本地 Gem 方式，GitHub Pages 不支持）
-theme: jekyll-theme-so-simple
+# theme: jekyll-theme-so-simple
 
 # 远程主题配置（直接从 GitHub 拉取主题，无需本地安装）
-# remote_theme: mmistakes/so-simple-theme
+remote_theme: mmistakes/so-simple-theme
 # plugins:
 #   - github-pages
 #   - jekyll-paginate
