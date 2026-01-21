@@ -1,53 +1,101 @@
 # Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-#
-# If you need help with YAML syntax, here are some quick references for you:
-# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
-# https://learnxinyminutes.com/docs/yaml/
-#
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-
-title: AyeeshaCheng Tech World
-email: magicstory@gmail904.com
-description: >- # this means to ignore newlines until "baseurl:"
-  热爱可抵岁月漫长 | 苍然暮色，自远而至，至无所见，心凝形释，与万化冥合。
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://ayeeshacheng.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: AyeeshaCheng
-github_username:  AyeeshaCheng
 
 # Build settings
-# theme: minima
-# 删除或注释掉原来的 theme 配置（这是本地 Gem 方式，GitHub Pages 不支持）
-# theme: jekyll-theme-so-simple
 
-# 新增远程主题配置（直接从 GitHub 拉取主题，无需本地安装）
-remote_theme: mmistakes/so-simple-theme
+# 这是本地 Gem 方式，GitHub Pages 不支持）
+theme: jekyll-theme-so-simple
+
+# 远程主题配置（直接从 GitHub 拉取主题，无需本地安装）
+# remote_theme: mmistakes/so-simple-theme
+# plugins:
+#   - github-pages
+#   - jekyll-paginate
+#   - jekyll-seo-tag
+#   - jekyll-feed
 plugins:
-  - github-pages
-  - jekyll-paginate
   - jekyll-seo-tag
+  - jekyll-sitemap
   - jekyll-feed
+  - jekyll-paginate
 
 # 暗色模式配置（直接加在文件末尾或「主题设置」章节）
 dark_mode: true  # 启用暗色模式功能（必须设为 true）
 dark_mode_default: dark  # 触发方式：auto/light/dark（三选一）
+skin: "/assets/css/skins/dark.css"
 # 👉 说明：
 # - auto：跟随系统设置（推荐！系统开暗色，博客就自动变深色，反之则浅色）
 # - dark：默认加载暗色模式（打开博客直接是深色）
 # - light：默认加载浅色模式，但保留切换功能（需要手动切暗色）
+date_format: "%B %-d, %Y"
+read_time: true # reading time estimates, e.g. true
+words_per_minute: 100 # 200
+show_read_time: true # 文章详情页显示时长
 
+logo: /docs/images/logo.png
+title: AyeeshaCheng Tech World
+description: >- # this means to ignore newlines until "baseurl:"
+  热爱可抵岁月漫长 | 苍然暮色，自远而至，至无所见，而犹不欲归。心凝形释，与万化冥合。
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://ayeeshacheng.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: AyeeshaCheng
+github_username:  AyeeshaCheng
+
+mathjax:
+  enable: # MathJax equations, e.g. true, false (default)
+  combo:  # "tex-svg" (default), "tex-mml-chtml", etc.: docs.mathjax.org/en/latest/web/components/combined.html
+  tags:  # "none", "ams" (default), "all"
+google_fonts:
+  - name: "Source Sans Pro"
+    weights: "400,400i,700,700i"
+  - name: "Lora"
+    weights: "400,400i,700,700i"
+google_analytics: # Google Analytics id, e.g. "UA-NNNNNNNN-N"
+disqus:
+  shortname: # Disqus shortname, e.g. "my_disqus_shortname"
+twitter:
+  username: # site's Twitter username, e.g. "mmistakes"
+
+# Liquid
+liquid:
+  error_mode: strict
+
+# Build settings
+permalink: /:categories/:title/
+markdown: kramdown
+feed:
+  path: atom.xml
+
+# Search
+search_full_content: false # can have performance implications for large sites
+
+
+# Front Matter Defaults
+defaults:
+  # Posts defaults
+  - scope:
+      path: "_posts"
+      type: posts
+    values:
+      layout: post
+      share: true
+
+
+# 要完全禁用页脚链接，请使用footer_links: false
+# 引用 Font Awesome 图标库的图标 https://fontawesome.com/icons
+# 「前缀 + 类名」的组合，根据场景选择 fas（实心）、fab（品牌）、far（常规）前缀
+footer_links:
+  - title: WeChat
+    url: https://twitter.com/AyeeshaCheng
+    icon: fab fa-weixin
+  - title: Twitter
+    url: https://twitter.com/AyeeshaCheng
+    icon: fab fa-twitter-square
+  - title: GitHub
+    url: https://github.com/AyeeshaCheng
+    icon: fab fa-github-square
+
+
+copyright: "This site is made with by *Ayeesha Cheng*."
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to

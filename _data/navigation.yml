@@ -1,9 +1,9 @@
 
 - title: Home
   url: /
-# - title: Categories
-#   url: /categories/
-# - title: External Page
-#   url: https://whatever-site.com/page.html
+- title: Categories
+  url: /categories/
+- title: AboutMe
+  url: /aboutme_tester
 # - title: Search
 #   url: /search/

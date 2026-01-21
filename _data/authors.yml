@@ -1,0 +1,20 @@
+
+
+# Sample Authors
+# Remove file or replace with your own
+author: AyeeshaCheng
+
+AyeeshaCheng:
+  name: Ayeesha Cheng
+  picture: /images/bio-photo-2.jpg
+  twitter: "@AyeeshaCheng"
+  links:
+    - title: Twitter
+      url: https://twitter.com/AyeeshaCheng
+      icon: fab fa-twitter-square
+
+Cornelius Fiddlebone:
+  name: Cornelius Fiddlebone
+  # 建议尺寸为150 x 150像素。
+  picture: /images/bio-photo.jpg
+  twitter: AyeeshaCheng
